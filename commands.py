@@ -20,5 +20,6 @@ json_renderer = JSONRenderer()
 toy1_json = json_renderer.render(serializer_toy1.data)
 toy2_json = json_renderer.render(serializer_toy2.data)
 
-
+toy3 = Toy(name="Clash Royale play set", description="6 figures from Clash Royale", release_date="2017-10-09T12:10:00.776594Z", toy_category="Playset", was_included_in_home=False)
+toy3.save()
 

@@ -6,7 +6,7 @@
   </component>
   <component name="DBNavigator.Project.DataEditorManager">
     <record-view-column-sorting-type value="BY_INDEX" />
-    <value-preview-text-wrapping value="true" />
+    <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
@@ -17,14 +17,16 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="a5275eea-3b34-44c8-99e5-70277d0bcac7">
-      <console name="restful" type="STANDARD" schema="public" session="Main"><![CDATA[select * from toys_toy;]]></console>
+      <console name="query" type="STANDARD" schema="public" session="Main"><![CDATA[select * from toys_toy;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="a5275eea-3b34-44c8-99e5-70277d0bcac7" object-ref="consoles/query" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="a5275eea-3b34-44c8-99e5-70277d0bcac7" />
