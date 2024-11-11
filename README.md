@@ -1,7 +1,7 @@
 Django Restful, PDF, Gaston Hillar 
 11/11/2024
 
-chp3 pg78
+chp4 pg88
 
 #Surface Bookpro VSC
 projects\Django\Gaston_Hillar\restful
