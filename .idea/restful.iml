@@ -4,6 +4,7 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="jdk" jdkName="Python 3.11 (venvDjango3)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="Django-RESTful-Web-Services" />
   </component>
   <component name="PyDocumentationSettings">
     <option name="format" value="PLAIN" />

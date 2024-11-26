@@ -19,8 +19,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'toys.apps.ToysConfig',
-    'drones.apps.DronesConfig',
+    'toys.apps.ToysConfig', #folder/apps.py/class
+    'drones.apps.DronesConfig', #folder/apps.py/class
 ]
 
 MIDDLEWARE = [

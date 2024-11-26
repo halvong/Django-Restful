@@ -17,7 +17,11 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="a5275eea-3b34-44c8-99e5-70277d0bcac7">
-      <console name="query" type="STANDARD" schema="public" session="Main"><![CDATA[select * from toys_toy order by id;]]></console>
+      <console name="query" type="STANDARD" schema="public" session="Main"><![CDATA[select * from toys_toy order by id;
+select * from drones_drone; 
+select * from drones_competition; 
+select * from drones_pilot; 
+select * from drones_dronecategory;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
