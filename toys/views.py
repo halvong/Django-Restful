@@ -6,11 +6,11 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from rest_framework import status
 from rest_framework.response import Response
-
 from toys.models import Toy
 from toys.serializers import ToySerializer
-
-
+'''
+@api_view allows: www-form, json, form-data pg99
+'''
 
 @api_view(['GET', 'POST'])
 def toy_list(request):

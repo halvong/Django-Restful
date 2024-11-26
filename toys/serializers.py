@@ -4,5 +4,4 @@ from toys.models import Toy
 class ToySerializer(serializers.ModelSerializer):
     class Meta:
         model = Toy
-        fields = ('id', 'name', 'description', 'toy_category')
-        #fields = ('id', 'name', 'description', 'release_date', 'toy_category', 'was_included_in_home')
+        fields = ('id', 'name', 'description', 'release_date', 'toy_category', 'was_included_in_home')
