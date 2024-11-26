@@ -24,23 +24,13 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="a5275eea-3b34-44c8-99e5-70277d0bcac7" object-ref="consoles/query" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="a5275eea-3b34-44c8-99e5-70277d0bcac7" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
-  </component>
-  <component name="DBNavigator.Project.MethodExecutionManager">
-    <method-browser />
-    <execution-history>
-      <group-entries value="true" />
-      <execution-inputs />
-    </execution-history>
-    <argument-values-cache />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
