@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../Django-RESTful-Web-Services/.idea/Django-RESTful-Web-Services.iml" filepath="$PROJECT_DIR$/../Django-RESTful-Web-Services/.idea/Django-RESTful-Web-Services.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/restful.iml" filepath="$PROJECT_DIR$/.idea/restful.iml" />
     </modules>
   </component>

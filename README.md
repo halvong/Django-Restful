@@ -1,7 +1,6 @@
 Django Restful, PDF, Gaston Hillar 
 11/26/2024
 
-chp6 upto pg138 add drones models.py classes, migrate db
 
 #url
 http://localhost:8000/toys
