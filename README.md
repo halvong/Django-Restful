@@ -1,8 +1,7 @@
 Django Restful, PDF, Gaston Hillar 
 11/28/2024
 
-chp6 wip copied code from book views.py, urls.py, models.py, serializers.py
-    works!
+chp6 pg150 starts Serialization and Deserialization with relationships
 
 #url
 http://localhost:8000/drones
