@@ -1,5 +1,5 @@
 Django Restful, PDF, Gaston Hillar 
-11/28/2024
+11/29/2024
 
 chp6 pg150 starts Serialization and Deserialization with relationships
 
