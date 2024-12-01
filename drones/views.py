@@ -6,7 +6,7 @@ from drones.models import DroneCategory
 from drones.models import Drone
 from drones.models import Pilot
 from drones.models import Competition
-from drones.serializers import DroneCategorySerializer
+from drones.serializers import DroneCategorySerializer, CompetitionSerializer, CompetitionPilotSerializer
 from drones.serializers import DroneSerializer
 from drones.serializers import PilotSerializer
 from drones.serializers import PilotCompetitionSerializer
@@ -37,12 +37,10 @@ class PilotList(generics.ListCreateAPIView):
     serializer_class = PilotSerializer
     name = 'pilot-list'
 
-
 class PilotDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Pilot.objects.all()
     serializer_class = PilotSerializer
     name = 'pilot-detail'
-
 
 class CompetitionList(generics.ListCreateAPIView):
     queryset = Competition.objects.all()
@@ -53,6 +51,16 @@ class CompetitionDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Competition.objects.all()
     serializer_class = PilotCompetitionSerializer
     name = 'competition-detail'
+
+class CompetitionPilot(generics.ListCreateAPIView):
+    queryset = Competition.objects.all()
+    serializer_class = CompetitionPilotSerializer
+    name = 'competitionPilot'
+
+class Competition(generics.ListCreateAPIView):
+    queryset = Competition.objects.all()
+    serializer_class = CompetitionSerializer
+    name = 'competition'
 
 class ApiRoot(generics.GenericAPIView):
     name = 'api-root'

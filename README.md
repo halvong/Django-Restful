@@ -1,7 +1,7 @@
 Django Restful, PDF, Gaston Hillar 
-11/29/2024
+12/01/2024
 
-chp6 pg150 starts Serialization and Deserialization with relationships
+chp6 pg157 wip class-based views
 
 #url
 http://localhost:8000/drones
@@ -21,3 +21,24 @@ python manage.py runserver
 
 chp6
 python manage.py startapp drones
+
+#notes
+serializers:
+    1. class Meta: model and especially the "fields"
+    2. properties: allows constraints and name rendering
+          a. property of other serializer class thru model id of foreign key
+          b. property of other serializer class thru other model's related name
+          c. property of other serializer class thru other model
+          d. property of other serializer class thru other fields
+          e. property thru SlugRelatedField(queryset=<Model name>.objects.all())
+          f. ForeignKey's related_name is for query, from parent to child
+    3. hyperlinked: makes url
+    4. SlugRelatedField: render name of a field
+
+    /*If a parent class, one-to-many, does not have a related name in the children class,
+       the parent will display children records using the children model name. */
+
+debug steps:
+  urls has views class
+  views class has serializer class
+  serializer class has model class under class Meta
