@@ -1,7 +1,7 @@
 Django Restful, PDF, Gaston Hillar 
 12/01/2024
 
-chp6 pg171 ends class-based views and generic class
+chp7 pg175 starts filterings, constraints, and paginations
 
 #url
 http://localhost:8000/drones
