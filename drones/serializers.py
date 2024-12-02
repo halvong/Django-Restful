@@ -91,7 +91,7 @@ class CompetitionSerializer(serializers.HyperlinkedModelSerializer):
 		fields = ('url', 'pk', 'distance_in_feet', 'distance_achievement_date', 'drone')
 
 class PilotSerializer(serializers.HyperlinkedModelSerializer):
-	# thru other class Meta model
+	#class thru other model of foreign key (pilot_id)
 	competitions = CompetitionSerializer(many=True, read_only=True)
 	gender = serializers.ChoiceField(choices=Pilot.GENDER_CHOICES) #constraint M, F
 	#render gender description instead of char pg155 Male, Female

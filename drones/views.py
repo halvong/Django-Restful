@@ -31,7 +31,7 @@ class DroneDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = DroneSerializer
     name = 'drone-detail'
 
-
+#url(r'^pilots/$)
 class PilotList(generics.ListCreateAPIView):
     queryset = Pilot.objects.all()
     serializer_class = PilotSerializer

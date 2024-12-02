@@ -1,7 +1,7 @@
 Django Restful, PDF, Gaston Hillar 
 12/01/2024
 
-chp6 pg157 wip class-based views
+chp6 pg171 ends class-based views and generic class
 
 #url
 http://localhost:8000/drones
@@ -28,10 +28,8 @@ serializers:
     2. properties: allows constraints and name rendering
           a. property of other serializer class thru model id of foreign key
           b. property of other serializer class thru other model's related name
-          c. property of other serializer class thru other model
-          d. property of other serializer class thru other fields
+          c. property of other serializer class thru other model of foreign key
           e. property thru SlugRelatedField(queryset=<Model name>.objects.all())
-          f. ForeignKey's related_name is for query, from parent to child
     3. hyperlinked: makes url
     4. SlugRelatedField: render name of a field
 
