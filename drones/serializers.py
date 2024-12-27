@@ -1,6 +1,7 @@
 """
 chp 6
 """
+from django.contrib.auth.models import User
 from rest_framework import serializers
 from drones.models import DroneCategory
 from drones.models import Drone
@@ -59,10 +60,12 @@ class DroneSerializer(serializers.HyperlinkedModelSerializer):
 	#display the category name, POST SlugRelatedField: dronecategory must exists constraint
 	#thru SlugRelatedField(queryset= <Model name>.objects.all())
 	drone_category = serializers.SlugRelatedField(queryset=DroneCategory.objects.all(), slug_field='name')
+	# Display the owner's username (read-only)
+	owner = serializers.ReadOnlyField(source='owner.username')
 
 	class Meta:
 		model = Drone #id, name, drone_category_id, manufacturing_date, has_it_competed, inserted_timestamp
-		fields = ('url', 'name', 'drone_category', 'manufacturing_date', 'has_it_competed', 'inserted_timestamp')
+		fields = ('url', 'name', 'drone_category', 'owner', 'manufacturing_date', 'has_it_competed', 'inserted_timestamp')
 
 class PilotCompetitionSerializer(serializers.ModelSerializer):
 	'''
@@ -112,3 +115,16 @@ class CompetitionPilotSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = Competition #id, distance_in_feet,distance_achievement_date, drone_id, pilot_id
 		fields = ('url', 'pk', 'distance_in_feet', 'distance_achievement_date', 'pilot_id', 'pilot', 'drone_id', 'drone')
+
+
+class UserDroneSerializer(serializers.HyperlinkedModelSerializer):
+	class Meta:
+		model = Drone
+		fields = ( 'url', 'name')
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+	drones = UserDroneSerializer(many=True, read_only=True) #drone model related_name
+
+	class Meta:
+		model = User
+		fields = ( 'url', 'pk', 'username', 'drone')

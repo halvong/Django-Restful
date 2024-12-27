@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from rest_framework import permissions
+from drones import custompermission
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
@@ -26,10 +27,26 @@ class DroneList(generics.ListCreateAPIView):
     serializer_class = DroneSerializer
     name = 'drone-list'
 
+    #chp6 skipped
+    #filter_fields = ('name', 'drone_category', 'manufacturing_date', 'has_it_competed')
+    #search_fields = ('^name',)
+    #ordering_fields = ('name', 'manufacturing_date')
+    permission_classes = (
+        permissions.IsAuthenticatedOrReadOnly,
+        custompermission.IsCurrentUserOwnerOrReadOnly,
+    )
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
 class DroneDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Drone.objects.all()
     serializer_class = DroneSerializer
     name = 'drone-detail'
+    permission_classes = (
+        permissions.IsAuthenticatedOrReadOnly,
+        custompermission.IsCurrentUserOwnerOrReadOnly,
+    )
 
 #url(r'^pilots/$)
 class PilotList(generics.ListCreateAPIView):
