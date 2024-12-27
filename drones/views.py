@@ -1,5 +1,7 @@
-from rest_framework import permissions
+from rest_framework import permissions #chp8
 from drones import custompermission
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import TokenAuthentication #chp8
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
@@ -28,7 +30,6 @@ class DroneList(generics.ListCreateAPIView):
     queryset = Drone.objects.all()
     serializer_class = DroneSerializer
     name = 'drone-list'
-
     #chp6 skipped
     #filter_fields = ('name', 'drone_category', 'manufacturing_date', 'has_it_competed')
     #search_fields = ('^name',)
@@ -57,11 +58,17 @@ class PilotList(generics.ListCreateAPIView):
     queryset = Pilot.objects.all()
     serializer_class = PilotSerializer
     name = 'pilot-list'
+    #chp8 token-based
+    authentication_classes = (TokenAuthentication)
+    permission_classes = (IsAuthenticated)
 
 class PilotDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Pilot.objects.all()
     serializer_class = PilotSerializer
     name = 'pilot-detail'
+    #chp8 token-based
+    authentication_classes = (TokenAuthentication)
+    permission_classes = (IsAuthenticated)
 
 class CompetitionList(generics.ListCreateAPIView):
     queryset = Competition.objects.all()

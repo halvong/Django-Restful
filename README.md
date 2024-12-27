@@ -1,11 +1,13 @@
 Django Restful, PDF, Gaston Hillar 
 12/27/2024
 
-chp8b pg246 finished basic authentication (user,password)
+chp8c pg252 wip token-based authentication not working
 
 #users
 python manage.py createsuperuser
 hal:hal
+#token
+57c457b2c5fe063fbe87d4c71d294c910e9600f7
 
 #url
 http://localhost:8000/drones
