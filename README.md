@@ -1,7 +1,7 @@
 Django Restful, PDF, Gaston Hillar 
 12/27/2024
 
-chp8b pg237 wip adding default user to drone table (model)
+chp8b pg246 finished basic authentication (user,password)
 
 #users
 python manage.py createsuperuser

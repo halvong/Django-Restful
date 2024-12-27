@@ -22,6 +22,8 @@ class DroneCategoryDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = DroneCategorySerializer
     name = 'dronecategory-detail'
 
+#owner of the drone will be able to execute PATCH, PUT, and DELETE methods
+#unauthenticated requests will also have read-only access to drones
 class DroneList(generics.ListCreateAPIView):
     queryset = Drone.objects.all()
     serializer_class = DroneSerializer
@@ -32,13 +34,15 @@ class DroneList(generics.ListCreateAPIView):
     #search_fields = ('^name',)
     #ordering_fields = ('name', 'manufacturing_date')
     permission_classes = (
-        permissions.IsAuthenticatedOrReadOnly,
+        permissions.IsAuthenticatedOrReadOnly, #read only
         custompermission.IsCurrentUserOwnerOrReadOnly,
     )
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
+#owner of the drone will be able to execute PATCH, PUT, and DELETE methods
+#unauthenticated requests will also have read-only access to drones
 class DroneDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Drone.objects.all()
     serializer_class = DroneSerializer
