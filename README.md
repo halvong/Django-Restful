@@ -1,7 +1,7 @@
 Django Restful, PDF, Gaston Hillar 
-12/01/2024
+12/27/2024
 
-chp7 pg175 starts filterings, constraints, and paginations
+chp8b pg220 starts authetication
 
 #url
 http://localhost:8000/drones
@@ -26,15 +26,20 @@ python manage.py startapp drones
 serializers:
     1. class Meta: model and especially the "fields"
     2. properties: allows constraints and name rendering
-          a. property of other serializer class thru model id of foreign key
+          a. property of other serializer class thru id of foreign key
           b. property of other serializer class thru other model's related name
+                serializers.HyperlinkedRelatedField
           c. property of other serializer class thru other model of foreign key
-          e. property thru SlugRelatedField(queryset=<Model name>.objects.all())
-    3. hyperlinked: makes url
-    4. SlugRelatedField: render name of a field
+          e. property thru serializers.SlugRelatedField(queryset=<Model name>.objects.all(), slug_field='description').
+                slugfield is <Model name> field.
+    3. serializers.HyperlinkedModelSerializer: makes url
+    4. Model that does not have related name will not be shown in the parent model.
 
-    /*If a parent class, one-to-many, does not have a related name in the children class,
-       the parent will display children records using the children model name. */
+
+/*
+We also have to pay special attention to the relationships between the different models when we
+create the serializer classes to manage serialization to JSON and deserialization from JSON.
+*/
 
 debug steps:
   urls has views class
