@@ -23,13 +23,16 @@ select * from drones_competition;
 select * from drones_pilot; 
 select * from drones_dronecategory;
 select * from auth_user;]]></console>
+      <console name="restful" type="STANDARD" schema="" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="a5275eea-3b34-44c8-99e5-70277d0bcac7" object-ref="consoles/restful" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="a5275eea-3b34-44c8-99e5-70277d0bcac7" />
@@ -46,10 +49,10 @@ select * from auth_user;]]></console>
       <connection id="a5275eea-3b34-44c8-99e5-70277d0bcac7" active="true" signed="true">
         <database>
           <name value="restful" />
-          <description value="11/08/2024" />
+          <description value="7/17/2025" />
           <database-type value="POSTGRES" />
           <config-type value="BASIC" />
-          <database-version value="13.16" />
+          <database-version value="13.21" />
           <driver-source value="BUNDLED" />
           <driver-library value="" />
           <driver value="" />

@@ -1,6 +1,7 @@
 Django Restful, PDF, Gaston Hillar 
-12/27/2024
+7/17/2025
 
+#old
 chp8c pg252 wip token-based authentication not working
 
 #users
@@ -14,7 +15,7 @@ http://localhost:8000/drones
 #upto chp4
 http://localhost:8000/toys
 
-#Surface Bookpro PyCharm
+#Surface Bookpro PyCharm Postgresql restful
 projects\Django\Gaston_Hillar\restful
 
 #github
@@ -28,6 +29,10 @@ python manage.py runserver
 chp6
 python manage.py startapp drones
 python manage.py makemigrations drones #233
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
+  hal:hal
 
 #notes
 serializers:
@@ -51,3 +56,8 @@ debug steps:
   urls has views class
   views class has serializer class
   serializer class has model class under class Meta
+
+#
+docker exec -it f8ca45 bash
+ psql -U postgres
+ postgres
