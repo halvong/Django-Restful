@@ -1,7 +1,8 @@
 Django Restful, PDF, Gaston Hillar 
 7/19/2025
 
-chp6 reviewing Generic PilotList
+chp7 Using Constraints, Filtering, Searching, Ordering, and Pagination
+     p180
 
 #old
 chp8c pg252 wip token-based authentication not working

@@ -35,7 +35,7 @@ class PilotCompetitionSerializer(serializers.ModelSerializer):
 		#rendering
 		fields = ('id', 'distance_in_feet', 'distance_achievement_date', 'url', 'pilot', 'drone')
 
-#similiar to CompetitionPilotSerializer
+#use in PilotSerializer
 class CompetitionSerializer(serializers.HyperlinkedModelSerializer):
 	# Display all the details for the related drone
 	# thru model id of foreign key
@@ -46,7 +46,6 @@ class CompetitionSerializer(serializers.HyperlinkedModelSerializer):
 		fields = ('id', 'distance_in_feet', 'distance_achievement_date', 'url', 'drone')
 
 class PilotSerializer(serializers.HyperlinkedModelSerializer):
-	#class thru other model of foreign key (pilot_id)
 	competitions = CompetitionSerializer(many=True, read_only=True)
 	gender = serializers.ChoiceField(choices=Pilot.GENDER_CHOICES) #constraint M, F
 	#render gender description instead of char pg155 Male, Female
