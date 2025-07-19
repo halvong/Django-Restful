@@ -15,7 +15,6 @@ class DroneCategory(models.Model):
 #DroneCategory.objects.filter(drone_category="xxx"), many Drone to one DroneCategory
 class Drone(models.Model):
     name = models.CharField(max_length=250)
-    #drones refers to Drone class. DroneCategory.drones.all()
     drone_category = models.ForeignKey(DroneCategory, related_name='drones', on_delete=models.CASCADE)
     manufacturing_date = models.DateTimeField()
     has_it_competed = models.BooleanField(default=False)
@@ -53,4 +52,4 @@ class Competition(models.Model):
     distance_achievement_date = models.DateTimeField()
     
     class Meta:
-        ordering = ('-distance_in_feet',) #descending
+        ordering = ('id',) #descending

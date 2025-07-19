@@ -14,51 +14,55 @@ from drones.serializers import DroneSerializer
 from drones.serializers import PilotSerializer
 from drones.serializers import PilotCompetitionSerializer
 
-#url(r'^drone-categories/$')
+#url(r'^drone-categories/$') okay
 class DroneCategoryList(generics.ListCreateAPIView):
     queryset = DroneCategory.objects.all()
     serializer_class = DroneCategorySerializer
     name = 'dronecategory-list'
 
-#url(r'^drone-categories/(?P<pk>[0-9]+)$')
+#url(r'^drone-categories/(?P<pk>[0-9]+)$') okay
 class DroneCategoryDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = DroneCategory.objects.all()
     serializer_class = DroneCategorySerializer
     lookup_field = 'pk'
     name = 'dronecategory-detail'
 
-#url(r'^drones/$')
+#url(r'^drones/$') okay
 class DroneList(generics.ListCreateAPIView):
     queryset = Drone.objects.all()
     serializer_class = DroneSerializer
     name = 'drone-list'
 
-#url(r'^drones/(?P<pk>[0-9]+)$'
+#url(r'^drones/(?P<pk>[0-9]+)$') okay
 class DroneDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Drone.objects.all()
     serializer_class = DroneSerializer
     name = 'drone-detail'
 
-
-#url(r'^pilots/$)
+#url(r'^pilots/$') okay
 class PilotList(generics.ListCreateAPIView):
     queryset = Pilot.objects.all()
     serializer_class = PilotSerializer
     name = 'pilot-list'
 
+#url(r'^pilots/(?P<pk>[0-9]+)$')
 class PilotDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Pilot.objects.all()
     serializer_class = PilotSerializer
+    lookup_field = 'pk'
     name = 'pilot-detail'
 
+#url(r'^competitions/$')
 class CompetitionList(generics.ListCreateAPIView):
     queryset = Competition.objects.all()
     serializer_class = PilotCompetitionSerializer
     name = 'competition-list'
 
+#url(r'^competitions/(?P<pk>[0-9]+)$')
 class CompetitionDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Competition.objects.all()
     serializer_class = PilotCompetitionSerializer
+    lookup_field = 'pk'
     name = 'competition-detail'
 
 class CompetitionPilot(generics.ListCreateAPIView):
@@ -66,6 +70,7 @@ class CompetitionPilot(generics.ListCreateAPIView):
     serializer_class = CompetitionPilotSerializer
     name = 'competitionPilot'
 
+#url(r'^competition/$')
 class Competition(generics.ListCreateAPIView):
     queryset = Competition.objects.all()
     serializer_class = CompetitionSerializer

@@ -26,20 +26,14 @@ class DroneSerializer(serializers.HyperlinkedModelSerializer):
 		fields = ('id','name', 'drone_category', 'url', 'manufacturing_date', 'has_it_competed', 'inserted_timestamp')
 
 class PilotCompetitionSerializer(serializers.ModelSerializer):
-	'''
-	offers constraints in POST pilot and drone
-    "pilot": [ "Object with name=Peter Perfect does not exist." ],
-    "drone": [ "Object with name=Scout does not exist." ]
-	'''
-	#display corresponding pilot and drone names
-	#thru SlugRelatedField(queryset= <Model name>.objects.all())
+	#display related pilot and drone names
 	pilot = serializers.SlugRelatedField(queryset=Pilot.objects.all(), slug_field='name')# Display pilot name
 	drone = serializers.SlugRelatedField(queryset=Drone.objects.all(), slug_field='name')# Display drone name
 
 	class Meta:
 		model = Competition #id, distance_in_feet, distance_achievement_date, drone_id, pilot_id
 		#rendering
-		fields = ('url', 'pk', 'distance_in_feet', 'distance_achievement_date', 'pilot', 'drone')
+		fields = ('id', 'distance_in_feet', 'distance_achievement_date', 'url', 'pilot', 'drone')
 
 #similiar to CompetitionPilotSerializer
 class CompetitionSerializer(serializers.HyperlinkedModelSerializer):
@@ -49,7 +43,7 @@ class CompetitionSerializer(serializers.HyperlinkedModelSerializer):
 
 	class Meta:
 		model = Competition #id, distance_in_feet,distance_achievement_date, drone_id, pilot_id
-		fields = ('url', 'pk', 'distance_in_feet', 'distance_achievement_date', 'drone')
+		fields = ('id', 'distance_in_feet', 'distance_achievement_date', 'url', 'drone')
 
 class PilotSerializer(serializers.HyperlinkedModelSerializer):
 	#class thru other model of foreign key (pilot_id)
@@ -61,7 +55,7 @@ class PilotSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = Pilot #id, name, gender, races_count, inserted_timestamp
 		#rendering
-		fields = ('url', 'name', 'gender', 'gender_description', 'races_count', 'inserted_timestamp', 'competitions')
+		fields = ('id', 'name', 'gender', 'gender_description', 'races_count', 'inserted_timestamp', 'url', 'competitions')
 
 #similiar to CompetitionSerializer w/o pilot property
 #url(r'^competition-pilot/$')

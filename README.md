@@ -1,7 +1,7 @@
 Django Restful, PDF, Gaston Hillar 
-7/18/2025
+7/19/2025
 
-chp6 reviewing Generic ListCreateAPIView
+chp6 reviewing Generic PilotList
 
 #old
 chp8c pg252 wip token-based authentication not working
@@ -37,18 +37,20 @@ python manage.py createsuperuser
 #notes
 https://www.cdrf.co
 
-serializers - represent model as a JSON object (model -> serializer -> JSON):
+1. serializers - representation of JSON output (model -> serializer -> JSON):
     1. class Meta has model and fields properties
-    2. foreign key property: allows constraints and name rendering.
-          a. foreign key is related data from other model.
-          b. related name is handler for parent model. Use SlugRelatedField on Serializer to display name.
-          c. no related name in foreign key cannot be access from the parent model.
-    3. Serializer HyperlinkedModelSerializer makes hyperlinked url.
-    4. Serializer attribute is a nested serializer of another model.
-    5. Slugfield renders name of a field
+    2. Serializer attribute is a nested serializer of another model.
+       a. HyperlinkedModelSerializer - hyperlinked url.
+       b. SlugRelatedField - specify name for related data
+       c. Slugfield renders name of a field
           serializers.SlugRelatedField(queryset=<Model name>.objects.all(), slug_field='description').
           "description" field is chosen to display.
 
+2. models - representation of form POST
+    1. ForeignKey property: allows constraints and name rendering.
+          a. foreign key is related data from other model.
+          b. related name is handler for parent model. Use SlugRelatedField on Serializer to display name.
+          c. no related name in foreign key cannot be access from the parent model.
 /*
 We also have to pay special attention to the relationships between the different models when we
 create the serializer classes to manage serialization to JSON and deserialization from JSON.
