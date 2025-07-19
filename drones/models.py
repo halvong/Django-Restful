@@ -12,7 +12,7 @@ class DroneCategory(models.Model):
     def __str__(self):
         return self.name
 
-#Drone.objects.filter(drone_category="xxx")
+#DroneCategory.objects.filter(drone_category="xxx"), many Drone to one DroneCategory
 class Drone(models.Model):
     name = models.CharField(max_length=250)
     #drones refers to Drone class. DroneCategory.drones.all()
@@ -22,7 +22,7 @@ class Drone(models.Model):
     inserted_timestamp = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ('name',)
+        ordering = ('id',) #immutable Tuples
 
     def __str__(self):
         return self.name
@@ -53,5 +53,4 @@ class Competition(models.Model):
     distance_achievement_date = models.DateTimeField()
     
     class Meta:
-        # Order by distance in descending order
-        ordering = ('-distance_in_feet',)
+        ordering = ('-distance_in_feet',) #descending

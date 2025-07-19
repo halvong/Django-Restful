@@ -1,5 +1,7 @@
 Django Restful, PDF, Gaston Hillar 
-7/17/2025
+7/18/2025
+
+chp6 reviewing Generic ListCreateAPIView
 
 #old
 chp8c pg252 wip token-based authentication not working
@@ -7,8 +9,6 @@ chp8c pg252 wip token-based authentication not working
 #users
 python manage.py createsuperuser
 hal:hal
-#token
-57c457b2c5fe063fbe87d4c71d294c910e9600f7
 
 #url
 http://localhost:8000/drones
@@ -26,7 +26,7 @@ python manage.py runserver
 .\projects\venvDjango3\Scripts\activate
 .\venvDjango3\Scripts\activate
 
-chp6
+#chp6
 python manage.py startapp drones
 python manage.py makemigrations drones #233
 python manage.py makemigrations
@@ -35,17 +35,19 @@ python manage.py createsuperuser
   hal:hal
 
 #notes
-serializers:
-    1. class Meta: model and especially the "fields".
-    2. properties: allows constraints and name rendering.
-          a. property of other serializer class thru id of foreign key.
-          b. property of other serializer class thru another model's related name.
-                serializers.HyperlinkedRelatedField.
-          c. property of other serializer class thru other model of foreign key.
-          e. property thru serializers.SlugRelatedField(queryset=<Model name>.objects.all(), slug_field='description').
-                slugfield <Model name> field is display.
-    3. serializers.HyperlinkedModelSerializer: makes url.
-    4. Model that does not have related name will not be shown in the parent model.
+https://www.cdrf.co
+
+serializers - represent model as a JSON object (model -> serializer -> JSON):
+    1. class Meta has model and fields properties
+    2. foreign key property: allows constraints and name rendering.
+          a. foreign key is related data from other model.
+          b. related name is handler for parent model. Use SlugRelatedField on Serializer to display name.
+          c. no related name in foreign key cannot be access from the parent model.
+    3. Serializer HyperlinkedModelSerializer makes hyperlinked url.
+    4. Serializer attribute is a nested serializer of another model.
+    5. Slugfield renders name of a field
+          serializers.SlugRelatedField(queryset=<Model name>.objects.all(), slug_field='description').
+          "description" field is chosen to display.
 
 /*
 We also have to pay special attention to the relationships between the different models when we

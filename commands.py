@@ -1,3 +1,19 @@
+import os, django
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "restful.settings")
+django.setup()
+from drones.models import *
+
+#1
+aa = DroneCategory.objects.get(id=1)
+aa.drones.all()
+    or
+DroneCategory.objects.get(id=1).drones.all()
+
+#2 filter cannot use related_name
+obj = DroneCategory.objects.filter(name="Quadcopter")
+
+#------------
+#------------
 from datetime import datetime
 from django.utils import timezone
 from rest_framework.renderers import JSONRenderer

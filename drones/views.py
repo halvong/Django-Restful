@@ -14,61 +14,42 @@ from drones.serializers import DroneSerializer
 from drones.serializers import PilotSerializer
 from drones.serializers import PilotCompetitionSerializer
 
+#url(r'^drone-categories/$')
 class DroneCategoryList(generics.ListCreateAPIView):
     queryset = DroneCategory.objects.all()
     serializer_class = DroneCategorySerializer
     name = 'dronecategory-list'
 
+#url(r'^drone-categories/(?P<pk>[0-9]+)$')
 class DroneCategoryDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = DroneCategory.objects.all()
     serializer_class = DroneCategorySerializer
+    lookup_field = 'pk'
     name = 'dronecategory-detail'
 
-#owner of the drone will be able to execute PATCH, PUT, and DELETE methods
-#unauthenticated requests will also have read-only access to drones
+#url(r'^drones/$')
 class DroneList(generics.ListCreateAPIView):
     queryset = Drone.objects.all()
     serializer_class = DroneSerializer
     name = 'drone-list'
-    #chp6 skipped
-    #filter_fields = ('name', 'drone_category', 'manufacturing_date', 'has_it_competed')
-    #search_fields = ('^name',)
-    #ordering_fields = ('name', 'manufacturing_date')
-    permission_classes = (
-        permissions.IsAuthenticatedOrReadOnly, #read only
-        custompermission.IsCurrentUserOwnerOrReadOnly,
-    )
 
-    def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
-
-#owner of the drone will be able to execute PATCH, PUT, and DELETE methods
-#unauthenticated requests will also have read-only access to drones
+#url(r'^drones/(?P<pk>[0-9]+)$'
 class DroneDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Drone.objects.all()
     serializer_class = DroneSerializer
     name = 'drone-detail'
-    permission_classes = (
-        permissions.IsAuthenticatedOrReadOnly,
-        custompermission.IsCurrentUserOwnerOrReadOnly,
-    )
+
 
 #url(r'^pilots/$)
 class PilotList(generics.ListCreateAPIView):
     queryset = Pilot.objects.all()
     serializer_class = PilotSerializer
     name = 'pilot-list'
-    #chp8 token-based
-    authentication_classes = (TokenAuthentication)
-    permission_classes = (IsAuthenticated)
 
 class PilotDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Pilot.objects.all()
     serializer_class = PilotSerializer
     name = 'pilot-detail'
-    #chp8 token-based
-    authentication_classes = (TokenAuthentication)
-    permission_classes = (IsAuthenticated)
 
 class CompetitionList(generics.ListCreateAPIView):
     queryset = Competition.objects.all()

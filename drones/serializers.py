@@ -7,65 +7,23 @@ from drones.models import DroneCategory
 from drones.models import Drone
 from drones.models import Pilot
 from drones.models import Competition
-""" 
-class Meta: model and fields
-propertes: allows constraints and custom rendering
-hyperlinked: makes url 
-SlugRelatedField: render name of a field
 
-POST returns data
-{
-    "url": "http://localhost:8000/drone-categories/1",
-    "pk": 1,
-    "name": "Fixed-wing",
-    "drones": []
-}
-GET one example from many
-{
-    "url": "http://localhost:8000/drone-categories/1",
-    "pk": 1,
-    "name": "Fixed-wing",
-    "drones": [
-        "http://localhost:8000/drones/5",
-        "http://localhost:8000/drones/2",
-        "http://localhost:8000/drones/3",
-        "http://localhost:8000/drones/4"
-    ]
-}
-"""
 class DroneCategorySerializer(serializers.HyperlinkedModelSerializer):
-	#GET HyperlinkedRelatedField gives url link
-	#thru other model's related name
+	#model's related_name and hyperlinked url, orderby in models
 	drones = serializers.HyperlinkedRelatedField(many=True, read_only=True, view_name='drone-detail')
 
 	class Meta:
 		model = DroneCategory #id,name
-		fields = ('url', 'pk', 'name', 'drones') #POST,GET drones from Drone will display
+		fields = ('pk', 'name', 'url', 'drones') #POST,GET drones from Drone will display
 
-""" POST returns
-{
-    "url": "http://localhost:8000/drones/1",
-    "name": "Scout AI",
-    "drone_category": "Single-rotor",
-    "manufacturing_date": "2024-08-26T01:15:00",
-    "has_it_competed": true,
-    "inserted_timestamp": "2024-11-29T22:18:11.925009"
-}
-
-"drone_category": [
-   "Object with name=fixed does not exist."
-]
-"""
 class DroneSerializer(serializers.HyperlinkedModelSerializer):
 	#display the category name, POST SlugRelatedField: dronecategory must exists constraint
 	#thru SlugRelatedField(queryset= <Model name>.objects.all())
 	drone_category = serializers.SlugRelatedField(queryset=DroneCategory.objects.all(), slug_field='name')
-	# Display the owner's username (read-only)
-	owner = serializers.ReadOnlyField(source='owner.username')
 
 	class Meta:
 		model = Drone #id, name, drone_category_id, manufacturing_date, has_it_competed, inserted_timestamp
-		fields = ('url', 'name', 'drone_category', 'owner', 'manufacturing_date', 'has_it_competed', 'inserted_timestamp')
+		fields = ('id','name', 'drone_category', 'url', 'manufacturing_date', 'has_it_competed', 'inserted_timestamp')
 
 class PilotCompetitionSerializer(serializers.ModelSerializer):
 	'''

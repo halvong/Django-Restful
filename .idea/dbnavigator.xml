@@ -23,16 +23,14 @@ select * from drones_competition;
 select * from drones_pilot; 
 select * from drones_dronecategory;
 select * from auth_user;]]></console>
-      <console name="restful" type="STANDARD" schema="" session="Main" />
+      <console name="restful" type="STANDARD" schema="public" session="Main"><![CDATA[select * from drones_dronecategory;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="a5275eea-3b34-44c8-99e5-70277d0bcac7" object-ref="consoles/restful" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="a5275eea-3b34-44c8-99e5-70277d0bcac7" />
