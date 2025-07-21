@@ -1,8 +1,5 @@
 from django.db import models
 
-#dronecategory = DroneCategory.objects.get(name="xxx")
-#dronecategory.drone_set.all() w/o related_name
-#dronecategory.drones.all() w/ related_name
 class DroneCategory(models.Model):
     name = models.CharField(max_length=250)
     
@@ -26,9 +23,6 @@ class Drone(models.Model):
     def __str__(self):
         return self.name
 
-#pilot = Pilot.objects.get(name="xxx")
-#pilot.competition_set.all() w/o related_name
-#pilot.competitions.all() w/ related_name
 class Pilot(models.Model):
     MALE = 'M'; FEMALE = 'F'
     GENDER_CHOICES = ((MALE, 'Male'), (FEMALE, 'Female'),)
@@ -44,7 +38,6 @@ class Pilot(models.Model):
         return self.name
 
 #Pilot to many Competition
-#Competition.objects.filter(pilot="xxx")
 class Competition(models.Model):
     pilot = models.ForeignKey(Pilot, related_name='competitions', on_delete=models.CASCADE)
     drone = models.ForeignKey(Drone, on_delete=models.CASCADE)

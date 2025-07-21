@@ -1,7 +1,7 @@
 Django Restful, PDF, Gaston Hillar 
-7/19/2025
+7/21/2025
 
-chp7 Using Constraints, Filtering, Searching, Ordering, and Pagination
+chp6 Done
      p180
 
 #old
@@ -39,18 +39,21 @@ python manage.py createsuperuser
 https://www.cdrf.co
 
 1. serializers - representation of JSON output (model -> serializer -> JSON):
-    1. class Meta has model and fields properties
-    2. Serializer attribute is a nested serializer of another model.
+    A. class Meta has model and fields properties
+    B. Serializer attribute is a nested serializer of another model.
        a. HyperlinkedModelSerializer - hyperlinked url.
        b. SlugRelatedField - specify name for related data
        c. Slugfield renders name of a field
           serializers.SlugRelatedField(queryset=<Model name>.objects.all(), slug_field='description').
           "description" field is chosen to display.
+    C. related field - pilot = serializers.SlugRelatedField(queryset=Pilot.objects.all(), slug_field='name')# Display pilot name
+       related json fields - pilot = PilotSerializer()
+
 
 2. models - representation of form POST
-    1. ForeignKey property: allows constraints and name rendering.
+    A. ForeignKey property: allows constraints and name rendering.
           a. foreign key is related data from other model.
-          b. related name is handler for parent model. Use SlugRelatedField on Serializer to display name.
+          b. related name is handler is for parent serializer. Use SlugRelatedField on Serializer to display name.
           c. no related name in foreign key cannot be access from the parent model.
 /*
 We also have to pay special attention to the relationships between the different models when we

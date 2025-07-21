@@ -17,8 +17,6 @@ class DroneCategorySerializer(serializers.HyperlinkedModelSerializer):
 		fields = ('pk', 'name', 'url', 'drones') #POST,GET drones from Drone will display
 
 class DroneSerializer(serializers.HyperlinkedModelSerializer):
-	#display the category name, POST SlugRelatedField: dronecategory must exists constraint
-	#thru SlugRelatedField(queryset= <Model name>.objects.all())
 	drone_category = serializers.SlugRelatedField(queryset=DroneCategory.objects.all(), slug_field='name')
 
 	class Meta:
@@ -47,8 +45,9 @@ class CompetitionSerializer(serializers.HyperlinkedModelSerializer):
 
 class PilotSerializer(serializers.HyperlinkedModelSerializer):
 	competitions = CompetitionSerializer(many=True, read_only=True)
-	gender = serializers.ChoiceField(choices=Pilot.GENDER_CHOICES) #constraint M, F
+
 	#render gender description instead of char pg155 Male, Female
+	gender = serializers.ChoiceField(choices=Pilot.GENDER_CHOICES) #constraint M, F
 	gender_description = serializers.CharField(source='get_gender_display', read_only=True)
 
 	class Meta:
