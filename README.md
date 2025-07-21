@@ -1,8 +1,8 @@
 Django Restful, PDF, Gaston Hillar 
 7/21/2025
 
-chp6 Done
-     p180
+chp7 Constraints filtering
+     p190
 
 #old
 chp8c pg252 wip token-based authentication not working
