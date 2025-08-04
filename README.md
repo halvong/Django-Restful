@@ -1,8 +1,8 @@
 Django Restful, PDF, Gaston Hillar 
 8/04/2025
 
-chp7 filtering, searching, ordering, done
-     p194
+chp8 Authentication & Permissions starts
+pg209
 
 #old
 chp8c pg252 wip token-based authentication not working
