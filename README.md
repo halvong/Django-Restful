@@ -1,7 +1,7 @@
 Django Restful, PDF, Gaston Hillar 
 8/04/2025
 
-chp7 filtering, searching, ordering
+chp7 filtering, searching, ordering, done
      p194
 
 #old
@@ -12,10 +12,14 @@ python manage.py createsuperuser
 hal:hal
 
 #url
-http://localhost:8000/drones
-chp7: http ":8000/drone-categories/?name=Quadcopter"
 #upto chp4
 http://localhost:8000/toys
+http://localhost:8000/drones
+
+chp7: http ":8000/drone-categories/?name=Quadcopter"
+http://localhost:8000/drones/?search=G
+http://localhost:8000/drones/?drone_category=1&has_it_competed=false&ordering=-name
+http://localhost:8000/competitions/?min_distance_in_feet=700&max_distance_in_feet=9000&from_achievement_date=2017-10-18&to_achievement_date=2017-10-22&ordering=-achievement_date
 
 #Surface Bookpro PyCharm Postgresql restful
 projects\Django\Gaston_Hillar\restful
@@ -56,10 +60,17 @@ https://www.cdrf.co
           a. foreign key is related data from other model.
           b. related name is handler is for parent serializer. Use SlugRelatedField on Serializer to display name.
           c. no related name in foreign key cannot be access from the parent model.
+
+3. filter_fields - don't know what it does
+
 /*
 We also have to pay special attention to the relationships between the different models when we
 create the serializer classes to manage serialization to JSON and deserialization from JSON.
 */
+The correct import in Views.py is like this:
+from django_filters import rest_framework as filters
+and the code for CompetitionFilteris like this
+min_distance_in_feet = filters.NumberFilter( field_name='distance_in_feet', lookup_expr='gte') max_distance_in_feet = filters.NumberFilter( field_name='distance_in_feet', lookup_expr='lte')
 
 debug steps:
   urls has views class

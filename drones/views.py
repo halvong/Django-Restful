@@ -5,7 +5,7 @@ from rest_framework.authentication import TokenAuthentication #chp8
 from rest_framework import generics, filters
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
-from django_filters import AllValuesFilter, DateTimeFilter, NumberFilter
+from django_filters import rest_framework as filters, AllValuesFilter, DateTimeFilter, NumberFilter
 from drones.models import DroneCategory
 from drones.models import Drone
 from drones.models import Pilot
@@ -31,6 +31,7 @@ class DroneCategoryDetail(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'pk'
     name = 'dronecategory-detail'
 
+#http://localhost:8000/drones/?drone_category=1&has_it_competed=False&ordering=-name
 #url(r'^drones/$') okay
 class DroneList(generics.ListCreateAPIView):
     queryset = Drone.objects.all()
@@ -62,10 +63,24 @@ class PilotDetail(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'pk'
     name = 'pilot-detail'
 
+class CompetitionFilter(filters.FilterSet):
+    from_achievement_date = DateTimeFilter(name='distance_achievement_date', lookup_expr='gte')
+    to_achievement_date = DateTimeFilter(name='distance_achievement_date', lookup_expr='lte')
+    min_distance_in_feet = NumberFilter(field_name='distance_in_feet', lookup_expr='gte')
+    max_distance_in_feet = NumberFilter(field_name='distance_in_feet', lookup_expr='lte')
+    drone_name = AllValuesFilter(name='drone__name')
+    pilot_name = AllValuesFilter(name='pilot__name')
+
+    class Meta:
+        model = Competition
+        fields = ('distance_in_feet', 'from_achievement_date', 'to_achievement_date', 'min_distance_in_feet', 'max_distance_in_feet', 'pilot_name', )
+
 #url(r'^competitions/$')
 class CompetitionList(generics.ListCreateAPIView):
     queryset = Competition.objects.all()
     serializer_class = PilotCompetitionSerializer
+    filter_class = CompetitionFilter
+    ordering_fields = ('distance_in_feet', 'distance_achievement_date')
     name = 'competition-list'
 
 #url(r'^competitions/(?P<pk>[0-9]+)$')
