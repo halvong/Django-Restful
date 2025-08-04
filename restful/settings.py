@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_filters',
     'rest_framework.authtoken', #token-based chp8
     'toys.apps.ToysConfig', #folder/apps.py/class
     'drones.apps.DronesConfig', #folder/apps.py/class
@@ -99,11 +100,11 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS':
         'drones.custompagination.LimitOffsetPaginationWithUpperBound',
         'PAGE_SIZE': 2,
-    #'DEFAULT_FILTER_BACKENDS': (
-    #    'django_filters.rest_framework.DjangoFilterBackend',
-    #    'rest_framework.filters.OrderingFilter',
-    #    'rest_framework.filters.SearchFilter',
-    #),
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.OrderingFilter',
+        'rest_framework.filters.SearchFilter',
+    ),
     #'DEFAULT_AUTHENTICATION_CLASSES': (
     #    'rest_framework.authentication.BasicAuthentication',
     #    'rest_framework.authentication.SessionAuthentication',

@@ -2,9 +2,10 @@ from rest_framework import permissions #chp8
 from drones import custompermission
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication #chp8
-from rest_framework import generics
+from rest_framework import generics, filters
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
+from django_filters import AllValuesFilter, DateTimeFilter, NumberFilter
 from drones.models import DroneCategory
 from drones.models import Drone
 from drones.models import Pilot
@@ -18,6 +19,9 @@ from drones.serializers import PilotCompetitionSerializer
 class DroneCategoryList(generics.ListCreateAPIView):
     queryset = DroneCategory.objects.all()
     serializer_class = DroneCategorySerializer
+    filter_fields = ('name',)
+    search_fields = ('^name',)
+    ordering_fields = ('name',)
     name = 'dronecategory-list'
 
 #url(r'^drone-categories/(?P<pk>[0-9]+)$') okay
@@ -31,6 +35,9 @@ class DroneCategoryDetail(generics.RetrieveUpdateDestroyAPIView):
 class DroneList(generics.ListCreateAPIView):
     queryset = Drone.objects.all()
     serializer_class = DroneSerializer
+    filter_fields = ('name', 'drone_category', 'manufacturing_date', 'has_it_competed',)
+    search_fields = ('^name',)
+    ordering_fields = ('name', 'manufacturing_date',)
     name = 'drone-list'
 
 #url(r'^drones/(?P<pk>[0-9]+)$') okay
@@ -43,6 +50,9 @@ class DroneDetail(generics.RetrieveUpdateDestroyAPIView):
 class PilotList(generics.ListCreateAPIView):
     queryset = Pilot.objects.all()
     serializer_class = PilotSerializer
+    filter_fields = ('name', 'gender', 'races_count',)
+    search_fields = ('^name',)
+    ordering_fields = ('name', 'races_count',)
     name = 'pilot-list'
 
 #url(r'^pilots/(?P<pk>[0-9]+)$')

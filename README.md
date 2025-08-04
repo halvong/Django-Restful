@@ -1,8 +1,8 @@
 Django Restful, PDF, Gaston Hillar 
-7/21/2025
+8/04/2025
 
-chp7 Constraints filtering
-     p190
+chp7 filtering, searching, ordering
+     p194
 
 #old
 chp8c pg252 wip token-based authentication not working
@@ -13,6 +13,7 @@ hal:hal
 
 #url
 http://localhost:8000/drones
+chp7: http ":8000/drone-categories/?name=Quadcopter"
 #upto chp4
 http://localhost:8000/toys
 
@@ -69,3 +70,5 @@ debug steps:
 docker exec -it f8ca45 bash
  psql -U postgres
  postgres
+
+ ----
