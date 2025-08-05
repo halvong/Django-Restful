@@ -1,3 +1,7 @@
+python manage.py shell_plus
+python manage.py shell
+
+----
 import os, django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "restful.settings")
 django.setup()
@@ -12,6 +16,17 @@ DroneCategory.objects.get(id=1).drones.all()
 #2 filter cannot use related_name
 obj = DroneCategory.objects.filter(name="Quadcopter")
 
+#display data from queryset
+for obj in result:
+    print(obj.name)
+
+pilots = Pilot.objects.get(id=1)
+results = pilots.competitions.all()
+for obj in results:
+    print("Competition id: " + str(obj.id)
+          + ", Drone: " + str(obj.drone)
+          + ", distance: " + str(obj.distance_in_feet)
+          )
 #------------
 #------------
 from datetime import datetime

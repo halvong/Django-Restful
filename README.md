@@ -1,11 +1,12 @@
 Django Restful, PDF, Gaston Hillar 
-8/04/2025
+8/05/2025
+
+chp8 Reviewing API
+urls,py, views.py, serializers.py, models.py
 
 chp8 Authentication & Permissions starts
 pg209
 
-#old
-chp8c pg252 wip token-based authentication not working
 
 #users
 python manage.py createsuperuser
@@ -54,12 +55,12 @@ https://www.cdrf.co
     C. related field - pilot = serializers.SlugRelatedField(queryset=Pilot.objects.all(), slug_field='name')# Display pilot name
        related json fields - pilot = PilotSerializer()
 
-
 2. models - representation of form POST
     A. ForeignKey property: allows constraints and name rendering.
           a. foreign key is related data from other model.
           b. related name is handler is for parent serializer. Use SlugRelatedField on Serializer to display name.
           c. no related name in foreign key cannot be access from the parent model.
+    B. models.py class fields display as input box in Django REST framework.
 
 3. filter_fields - don't know what it does
 
