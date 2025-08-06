@@ -4,13 +4,15 @@ Django Restful, PDF, Gaston Hillar
 chp8 Reviewing API
 urls,py, views.py, serializers.py, models.py
 
-chp8 Authentication & Permissions starts
-pg209
+chp8 Permissions testing
+pg227
 
 
 #users
 python manage.py createsuperuser
 hal:hal
+david:carol911
+
 
 #url
 #upto chp4

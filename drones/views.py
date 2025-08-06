@@ -39,12 +39,24 @@ class DroneList(generics.ListCreateAPIView):
     filter_fields = ('name', 'drone_category', 'manufacturing_date', 'has_it_competed',)
     search_fields = ('^name',)
     ordering_fields = ('name', 'manufacturing_date',)
+    permission_classes = (
+        permissions.IsAuthenticatedOrReadOnly,
+        custompermission.IsCurrentUserOwnerOrReadOnly,
+    )
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
     name = 'drone-list'
 
 #url(r'^drones/(?P<pk>[0-9]+)$') okay
 class DroneDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Drone.objects.all()
     serializer_class = DroneSerializer
+    permission_classes = (
+        permissions.IsAuthenticatedOrReadOnly,
+        custompermission.IsCurrentUserOwnerOrReadOnly,
+    )
     name = 'drone-detail'
 
 #url(r'^pilots/$') okay

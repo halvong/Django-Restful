@@ -10,7 +10,11 @@
     <value-preview-pinned value="false" />
   </component>
   <component name="DBNavigator.Project.DatabaseAssistantManager">
-    <assistants />
+    <assistants>
+      <assistant-state connection-id="a5275eea-3b34-44c8-99e5-70277d0bcac7" default-profile-name="" selected-conversation-id="" assistant-type="GENERIC" availability="UNAVAILABLE" acknowledgement="NONE">
+        <conversations />
+      </assistant-state>
+    </assistants>
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
     <autoscroll-to-editor value="false" />
@@ -26,7 +30,8 @@ select * from drones_competition;
 select * from drones_pilot; 
 select * from drones_dronecategory;
 select * from auth_user;]]></console>
-      <console name="restful" type="STANDARD" schema="public" session="Main"><![CDATA[select * from drones_dronecategory;]]></console>
+      <console name="restful" type="STANDARD" schema="public" session="Main"><![CDATA[select * from drones_dronecategory;
+select * from auth_user;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -71,7 +76,7 @@ select * from auth_user;]]></console>
           <token-type value="" />
           <token-config-file value="" />
           <token-profile value="" />
-          <session-user value="" />
+          <session-user value="postgres" />
         </database>
         <properties>
           <auto-commit value="false" />
