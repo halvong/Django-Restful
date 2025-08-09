@@ -43,6 +43,7 @@ class CompetitionSerializer(serializers.HyperlinkedModelSerializer):
 		fields = ('id', 'distance_in_feet', 'distance_achievement_date', 'url', 'drone')
 
 class PilotSerializer(serializers.HyperlinkedModelSerializer):
+	#Competition model has pilot foreign key with related name compettions
 	competitions = CompetitionSerializer(many=True, read_only=True)
 
 	#render gender description instead of char pg155 Male, Female

@@ -39,13 +39,13 @@ class DroneList(generics.ListCreateAPIView):
     filter_fields = ('name', 'drone_category', 'manufacturing_date', 'has_it_competed',)
     search_fields = ('^name',)
     ordering_fields = ('name', 'manufacturing_date',)
-    permission_classes = (
-        permissions.IsAuthenticatedOrReadOnly,
+    permission_classes = ( #readonly
+        permissions.IsAuthenticatedOrReadOnly, #has auth.User in model
         custompermission.IsCurrentUserOwnerOrReadOnly,
     )
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+        serializer.save(owner=self.request.user) #authenticated user making the request
 
     name = 'drone-list'
 
@@ -53,8 +53,8 @@ class DroneList(generics.ListCreateAPIView):
 class DroneDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Drone.objects.all()
     serializer_class = DroneSerializer
-    permission_classes = (
-        permissions.IsAuthenticatedOrReadOnly,
+    permission_classes = ( #readonly
+        permissions.IsAuthenticatedOrReadOnly, #has auth.User in model
         custompermission.IsCurrentUserOwnerOrReadOnly,
     )
     name = 'drone-detail'
@@ -66,6 +66,8 @@ class PilotList(generics.ListCreateAPIView):
     filter_fields = ('name', 'gender', 'races_count',)
     search_fields = ('^name',)
     ordering_fields = ('name', 'races_count',)
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     name = 'pilot-list'
 
 #url(r'^pilots/(?P<pk>[0-9]+)$')
@@ -73,6 +75,8 @@ class PilotDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Pilot.objects.all()
     serializer_class = PilotSerializer
     lookup_field = 'pk'
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     name = 'pilot-detail'
 
 class CompetitionFilter(filters.FilterSet):
@@ -117,8 +121,8 @@ class ApiRoot(generics.GenericAPIView):
     name = 'api-root'
     def get(self, request, *args, **kwargs):
         return Response({
-            'drone-categories': reverse(DroneCategoryList.name, request=request),
             'drones': reverse(DroneList.name, request=request),
+            'drone-categories': reverse(DroneCategoryList.name, request=request),
             'pilots': reverse(PilotList.name, request=request),
             'competitions': reverse(CompetitionList.name, request=request)
         })

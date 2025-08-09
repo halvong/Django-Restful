@@ -1,11 +1,9 @@
 Django Restful, PDF, Gaston Hillar 
-8/05/2025
+8/09/2025
 
-chp8 Reviewing API
-urls,py, views.py, serializers.py, models.py
+chp8 Reviewing API token for pilot and password for drone
+upto p254
 
-chp8 Permissions testing
-pg227
 
 
 #users
@@ -24,7 +22,7 @@ http://localhost:8000/drones/?search=G
 http://localhost:8000/drones/?drone_category=1&has_it_competed=false&ordering=-name
 http://localhost:8000/competitions/?min_distance_in_feet=700&max_distance_in_feet=9000&from_achievement_date=2017-10-18&to_achievement_date=2017-10-22&ordering=-achievement_date
 
-#Surface Bookpro PyCharm Postgresql restful
+#Surface Bookpro PyCharm Postgresql Django==3.2.25 venvDjango3
 projects\Django\Gaston_Hillar\restful
 
 #github
@@ -48,19 +46,23 @@ https://www.cdrf.co
 
 1. serializers - representation of JSON output (model -> serializer -> JSON):
     A. class Meta has model and fields properties
-    B. Serializer attribute is a nested serializer of another model.
-       a. HyperlinkedModelSerializer - hyperlinked url.
-       b. SlugRelatedField - specify name for related data
-       c. Slugfield renders name of a field
+    B. Serializer attribute is a nested serializer of another model
+       a. HyperlinkedModelSerializer - url property
+       b. HyperlinkedRelatedField - nested serializer
+       c. SlugRelatedField and slug_field (chosen column) - name in place of id
           serializers.SlugRelatedField(queryset=<Model name>.objects.all(), slug_field='description').
-          "description" field is chosen to display.
     C. related field - pilot = serializers.SlugRelatedField(queryset=Pilot.objects.all(), slug_field='name')# Display pilot name
        related json fields - pilot = PilotSerializer()
+    D. Serializer can have nested serializer, but no foreign key in model.
+       Nested-serializer  model has the foreign key that link back to the host model.
+       e.g. PilotSerializer has nested CompetitionSerializer (model Competition).
+       Competition has pilot foreign key with related name competitions referencing
+       PilotSerializer.
 
 2. models - representation of form POST
     A. ForeignKey property: allows constraints and name rendering.
           a. foreign key is related data from other model.
-          b. related name is handler is for parent serializer. Use SlugRelatedField on Serializer to display name.
+          b. related name is handler is for parent serializer. Handler in parent as serializer(many=True)
           c. no related name in foreign key cannot be access from the parent model.
     B. models.py class fields display as input box in Django REST framework.
 
@@ -86,3 +88,7 @@ docker exec -it f8ca45 bash
  postgres
 
  ----
+python manage.py shell_plus
+user = User.objects.get(username="hal")
+token = Token.objects.create(user=user)
+print(token.key)
