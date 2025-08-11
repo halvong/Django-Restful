@@ -1,10 +1,14 @@
 Django Restful, PDF, Gaston Hillar 
-8/09/2025
+8/11/2025
 
 chp8 Reviewing API token for pilot and password for drone
 upto p254
 
-
+#Thinkpad PyCharm venv_django3
+projects\django\Gaston_Hillar\Django-Restful
+Django==3.2.25
+psycopg2-binary==2.9.10
+legacy-cgi==2.6.3
 
 #users
 python manage.py createsuperuser
